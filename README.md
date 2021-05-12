@@ -21,17 +21,15 @@ Open/Closed Principle -  You can introduce new types of adapters into the progra
 ## Cons:
  The overall complexity of the code increases because you need to introduce a set of new interfaces and classes. Sometimes it’s simpler just to change the service class so that it matches the rest of your code.
 
-# Bridge
-Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
+# Composite
+Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
+
 ## Usecase:
-Say you have a geometric Shape class with a pair of subclasses: Circle and Square. You want to extend this class hierarchy to incorporate colors, so you plan to create Red and Blue shape subclasses. However, since you already have two subclasses, you’ll need to create four class combinations such as BlueCircle and RedSquare.Adding new shape types and colors to the hierarchy will grow it exponentially.
+Armies of most countries are structured as hierarchies. An army consists of several divisions; a division is a set of brigades, and a brigade consists of platoons, which can be broken down into squads. Finally, a squad is a small group of real soldiers. Orders are given at the top of the hierarchy and passed down onto each level until every soldier knows what needs to be done.
 
-
-Following this approach, we can extract the color-related code into its own class with two subclasses: Red and Blue. The Shape class then gets a reference field pointing to one of the color objects. Now the shape can delegate any color-related work to the linked color object. That reference will act as a bridge between the Shape and Color classes. From now on, adding new colors won’t require changing the shape hierarchy, and vice versa.
 ## Pros:
-- You can create platform-independent classes and apps.
-- The client code works with high-level abstractions. It isn’t exposed to the platform details.
-- Open/Closed Principle. You can introduce new abstractions and implementations independently from each other.
-- Single Responsibility Principle. You can focus on high-level logic in the abstraction and on platform details in the implementation.
+ - Can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage.
+ - Open/Closed Principle. You can introduce new element types into the app without breaking the existing code, which now works with the object tree.
+
 ## Cons:
-- You might make the code more complicated by applying the pattern to a highly cohesive class.
+- It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend.
